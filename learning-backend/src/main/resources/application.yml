@@ -1,0 +1,51 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/learning?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&characterEncoding=utf8
+    username: root
+    password: 123456
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  cache:
+    type: redis
+  ai:
+    openai:
+      base-url: https://api.deepseek.com
+      api-key: ${DEEPSEEK_API_KEY:}
+      chat:
+        options:
+          model: deepseek-chat
+          temperature: 0.2
+
+storage:
+  local-path: D:/learning_uploads
+  public-prefix: /files/
+
+jwt:
+  secret: change_this_to_a_long_random_secret
+  expireMinutes: 1440
+
+otp:
+  channel: email
+  expireMinutes: 10
+  rateLimitSeconds: 60
+  email:
+    from: noreply@example.com
+    provider: SMTP_OR_SENDGRID
+  sms:
+    provider: TWILIO_OR_ALIYUN
+
+ai:
+  mock-enabled: ${AI_MOCK_ENABLED:true}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
